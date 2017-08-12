@@ -1,1166 +1,247 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
-    <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-    
-    <spring:url var="css" value="/resources/css" />
-    <spring:url var="js" value="/resources/js" />
-    <spring:url var="images" value="/resources/images" />
-    <spring:url var="fonts" value="/resources/fonts" />
-    <c:set var ="contextRoot" value="${pageContext.request.contextPath}" />
+	pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<spring:url var="css" value="/resources/css" />
+<spring:url var="js" value="/resources/js" />
+<spring:url var="images" value="/resources/images" />
+<spring:url var="fonts" value="/resources/fonts" />
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
-<!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Material Design Lite</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
-    <!-- Favicon-->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
 
-    <!-- Bootstrap Core Css -->
-    <link href="${css}/bootstrap.css" rel="stylesheet">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
 
-    <!-- Waves Effect Css -->
-    <link href="${css}/waves.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="images/favicon.png">
 
-    <!-- Animation Css -->
-    <link href="${css}/animate.css" rel="stylesheet" />
-    
-    <!-- Materialize Css -->
-    <link href="${css}/materialize.css" rel="stylesheet" />
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
 
-    <!-- Morris Chart Css-->
-    <link href="${css}/morris.css" rel="stylesheet" />
-
-    <!-- Custom Css -->
-    <link href="${css}/style.css" rel="stylesheet">
-
-    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="${css}/all-themes.css" rel="stylesheet" />
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/8F795AA5-9BF9-8843-939E-26B7EAC3F2DE/main.js" charset="UTF-8"></script></head>
-
-<body class="theme-blue">
-    <!-- Page Loader -->
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
+    <link rel="stylesheet" href="${css}/styles.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/8F795AA5-9BF9-8843-939E-26B7EAC3F2DE/main.js" charset="UTF-8"></script></head>
+  <body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Home</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" id="search">
+              <label class="mdl-textfield__label" for="search">Enter your query...</label>
             </div>
-            <p>Please wait...</p>
+          </div>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+            <li class="mdl-menu__item">About</li>
+            <li class="mdl-menu__item">Contact</li>
+            <li class="mdl-menu__item">Legal information</li>
+          </ul>
         </div>
-    </div>
-    <!-- #END# Page Loader -->
-    <!-- Overlay For Sidebars -->
-    <div class="overlay"></div>
-    <!-- #END# Overlay For Sidebars -->
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <div class="search-icon">
-            <i class="material-icons">search</i>
-        </div>
-        <input type="text" placeholder="START TYPING...">
-        <div class="close-search">
-            <i class="material-icons">close</i>
-        </div>
-    </div>
-    <!-- #END# Search Bar -->
-    <!-- Top Bar -->
-    <nav class="navbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
-                <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="index.html">ADMINBSB - MATERIAL DESIGN</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Call Search -->
-                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
-                    <!-- #END# Call Search -->
-<!--                     Notifications -->
-<!--                     <li class="dropdown"> -->
-<!--                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"> -->
-<!--                             <i class="material-icons">notifications</i> -->
-<!--                             <span class="label-count">7</span> -->
-<!--                         </a> -->
-<!--                         <ul class="dropdown-menu"> -->
-<!--                             <li class="header">NOTIFICATIONS</li> -->
-<!--                             <li class="body"> -->
-<!--                                 <ul class="menu"> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <div class="icon-circle bg-light-green"> -->
-<!--                                                 <i class="material-icons">person_add</i> -->
-<!--                                             </div> -->
-<!--                                             <div class="menu-info"> -->
-<!--                                                 <h4>12 new members joined</h4> -->
-<!--                                                 <p> -->
-<!--                                                     <i class="material-icons">access_time</i> 14 mins ago -->
-<!--                                                 </p> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <div class="icon-circle bg-cyan"> -->
-<!--                                                 <i class="material-icons">add_shopping_cart</i> -->
-<!--                                             </div> -->
-<!--                                             <div class="menu-info"> -->
-<!--                                                 <h4>4 sales made</h4> -->
-<!--                                                 <p> -->
-<!--                                                     <i class="material-icons">access_time</i> 22 mins ago -->
-<!--                                                 </p> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <div class="icon-circle bg-red"> -->
-<!--                                                 <i class="material-icons">delete_forever</i> -->
-<!--                                             </div> -->
-<!--                                             <div class="menu-info"> -->
-<!--                                                 <h4><b>Nancy Doe</b> deleted account</h4> -->
-<!--                                                 <p> -->
-<!--                                                     <i class="material-icons">access_time</i> 3 hours ago -->
-<!--                                                 </p> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <div class="icon-circle bg-orange"> -->
-<!--                                                 <i class="material-icons">mode_edit</i> -->
-<!--                                             </div> -->
-<!--                                             <div class="menu-info"> -->
-<!--                                                 <h4><b>Nancy</b> changed name</h4> -->
-<!--                                                 <p> -->
-<!--                                                     <i class="material-icons">access_time</i> 2 hours ago -->
-<!--                                                 </p> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <div class="icon-circle bg-blue-grey"> -->
-<!--                                                 <i class="material-icons">comment</i> -->
-<!--                                             </div> -->
-<!--                                             <div class="menu-info"> -->
-<!--                                                 <h4><b>John</b> commented your post</h4> -->
-<!--                                                 <p> -->
-<!--                                                     <i class="material-icons">access_time</i> 4 hours ago -->
-<!--                                                 </p> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <div class="icon-circle bg-light-green"> -->
-<!--                                                 <i class="material-icons">cached</i> -->
-<!--                                             </div> -->
-<!--                                             <div class="menu-info"> -->
-<!--                                                 <h4><b>John</b> updated status</h4> -->
-<!--                                                 <p> -->
-<!--                                                     <i class="material-icons">access_time</i> 3 hours ago -->
-<!--                                                 </p> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <div class="icon-circle bg-purple"> -->
-<!--                                                 <i class="material-icons">settings</i> -->
-<!--                                             </div> -->
-<!--                                             <div class="menu-info"> -->
-<!--                                                 <h4>Settings updated</h4> -->
-<!--                                                 <p> -->
-<!--                                                     <i class="material-icons">access_time</i> Yesterday -->
-<!--                                                 </p> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                 </ul> -->
-<!--                             </li> -->
-<!--                             <li class="footer"> -->
-<!--                                 <a href="javascript:void(0);">View All Notifications</a> -->
-<!--                             </li> -->
-<!--                         </ul> -->
-<!--                     </li> -->
-<!--                     #END# Notifications -->
-<!--                     Tasks -->
-<!--                     <li class="dropdown"> -->
-<!--                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"> -->
-<!--                             <i class="material-icons">flag</i> -->
-<!--                             <span class="label-count">9</span> -->
-<!--                         </a> -->
-<!--                         <ul class="dropdown-menu"> -->
-<!--                             <li class="header">TASKS</li> -->
-<!--                             <li class="body"> -->
-<!--                                 <ul class="menu tasks"> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <h4> -->
-<!--                                                 Footer display issue -->
-<!--                                                 <small>32%</small> -->
-<!--                                             </h4> -->
-<!--                                             <div class="progress"> -->
-<!--                                                 <div class="progress-bar bg-pink" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 32%"> -->
-<!--                                                 </div> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <h4> -->
-<!--                                                 Make new buttons -->
-<!--                                                 <small>45%</small> -->
-<!--                                             </h4> -->
-<!--                                             <div class="progress"> -->
-<!--                                                 <div class="progress-bar bg-cyan" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 45%"> -->
-<!--                                                 </div> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <h4> -->
-<!--                                                 Create new dashboard -->
-<!--                                                 <small>54%</small> -->
-<!--                                             </h4> -->
-<!--                                             <div class="progress"> -->
-<!--                                                 <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 54%"> -->
-<!--                                                 </div> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <h4> -->
-<!--                                                 Solve transition issue -->
-<!--                                                 <small>65%</small> -->
-<!--                                             </h4> -->
-<!--                                             <div class="progress"> -->
-<!--                                                 <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 65%"> -->
-<!--                                                 </div> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                     <li> -->
-<!--                                         <a href="javascript:void(0);"> -->
-<!--                                             <h4> -->
-<!--                                                 Answer GitHub questions -->
-<!--                                                 <small>92%</small> -->
-<!--                                             </h4> -->
-<!--                                             <div class="progress"> -->
-<!--                                                 <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 92%"> -->
-<!--                                                 </div> -->
-<!--                                             </div> -->
-<!--                                         </a> -->
-<!--                                     </li> -->
-<!--                                 </ul> -->
-<!--                             </li> -->
-<!--                             <li class="footer"> -->
-<!--                                 <a href="javascript:void(0);">View All Tasks</a> -->
-<!--                             </li> -->
-<!--                         </ul> -->
-<!--                     </li> -->
-<!--                     #END# Tasks -->
-                    <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- #Top Bar -->
-    <section>
-        <!-- Left Sidebar -->
-        <aside id="leftsidebar" class="sidebar">
-            <!-- User Info -->
-            <div class="user-info">
-                <div class="image">
-                    <img src="images/user.png" width="48" height="48" alt="User" />
-                </div>
-                <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                    <div class="email">john.doe@example.com</div>
-                    <div class="btn-group user-helper-dropdown">
-                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- #User Info -->
-            <!-- Menu -->
-            <div class="menu">
-                <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="active">
-                        <a href="index.html">
-                            <i class="material-icons">home</i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/typography.html">
-                            <i class="material-icons">text_fields</i>
-                            <span>Typography</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/helper-classes.html">
-                            <i class="material-icons">layers</i>
-                            <span>Helper Classes</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">widgets</i>
-                            <span>Widgets</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Cards</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="pages/widgets/cards/basic.html">Basic</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/cards/colored.html">Colored</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/cards/no-header.html">No Header</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Infobox</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="pages/widgets/infobox/infobox-1.html">Infobox-1</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/infobox/infobox-2.html">Infobox-2</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/infobox/infobox-3.html">Infobox-3</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/infobox/infobox-4.html">Infobox-4</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/infobox/infobox-5.html">Infobox-5</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">swap_calls</i>
-                            <span>User Interface (UI)</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="pages/ui/alerts.html">Alerts</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/animations.html">Animations</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/badges.html">Badges</a>
-                            </li>
-
-                            <li>
-                                <a href="pages/ui/breadcrumbs.html">Breadcrumbs</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/buttons.html">Buttons</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/collapse.html">Collapse</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/colors.html">Colors</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/dialogs.html">Dialogs</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/icons.html">Icons</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/labels.html">Labels</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/list-group.html">List Group</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/media-object.html">Media Object</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/modals.html">Modals</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/notifications.html">Notifications</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/pagination.html">Pagination</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/preloaders.html">Preloaders</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/progressbars.html">Progress Bars</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/range-sliders.html">Range Sliders</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/sortable-nestable.html">Sortable Nestable</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/tabs.html">Tabs</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/thumbnails.html">Thumbnails</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/tooltips-popovers.html">TooltipsPopovers</a>
-                            </li>
-                            <li>
-                                <a href="pages/ui/waves.html">Waves</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">assignment</i>
-                            <span>Forms</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="pages/forms/basic-form-elements.html">Basic Form Elements</a>
-                            </li>
-                            <li>
-                                <a href="pages/forms/advanced-form-elements.html">Advanced Form Elements</a>
-                            </li>
-                            <li>
-                                <a href="pages/forms/form-examples.html">Form Examples</a>
-                            </li>
-                            <li>
-                                <a href="pages/forms/form-validation.html">Form Validation</a>
-                            </li>
-                            <li>
-                                <a href="pages/forms/form-wizard.html">Form Wizard</a>
-                            </li>
-                            <li>
-                                <a href="pages/forms/editors.html">Editors</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">view_list</i>
-                            <span>Tables</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="pages/tables/normal-tables.html">Normal Tables</a>
-                            </li>
-                            <li>
-                                <a href="pages/tables/jquery-datatable.html">Jquery Datatables</a>
-                            </li>
-                            <li>
-                                <a href="pages/tables/editable-table.html">Editable Tables</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">perm_media</i>
-                            <span>Medias</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="pages/medias/image-gallery.html">Image Gallery</a>
-                            </li>
-                            <li>
-                                <a href="pages/medias/carousel.html">Carousel</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">pie_chart</i>
-                            <span>Charts</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="pages/charts/morris.html">Morris</a>
-                            </li>
-                            <li>
-                                <a href="pages/charts/flot.html">Flot</a>
-                            </li>
-                            <li>
-                                <a href="pages/charts/chartjs.html">ChartJS</a>
-                            </li>
-                            <li>
-                                <a href="pages/charts/sparkline.html">Sparkline</a>
-                            </li>
-                            <li>
-                                <a href="pages/charts/jquery-knob.html">Jquery Knob</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">content_copy</i>
-                            <span>Example Pages</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="pages/examples/sign-in.html">Sign In</a>
-                            </li>
-                            <li>
-                                <a href="pages/examples/sign-up.html">Sign Up</a>
-                            </li>
-                            <li>
-                                <a href="pages/examples/forgot-password.html">Forgot Password</a>
-                            </li>
-                            <li>
-                                <a href="pages/examples/blank.html">Blank Page</a>
-                            </li>
-                            <li>
-                                <a href="pages/examples/404.html">404 - Not Found</a>
-                            </li>
-                            <li>
-                                <a href="pages/examples/500.html">500 - Server Error</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">map</i>
-                            <span>Maps</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="pages/maps/google.html">Google Map</a>
-                            </li>
-                            <li>
-                                <a href="pages/maps/yandex.html">YandexMap</a>
-                            </li>
-                            <li>
-                                <a href="pages/maps/jvectormap.html">jVectorMap</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">trending_down</i>
-                            <span>Multi Level Menu</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="javascript:void(0);">
-                                    <span>Menu Item</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);">
-                                    <span>Menu Item - 2</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Level - 2</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <span>Menu Item</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="menu-toggle">
-                                            <span>Level - 3</span>
-                                        </a>
-                                        <ul class="ml-menu">
-                                            <li>
-                                                <a href="javascript:void(0);">
-                                                    <span>Level - 4</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="pages/changelogs.html">
-                            <i class="material-icons">update</i>
-                            <span>Changelogs</span>
-                        </a>
-                    </li>
-                    <li class="header">LABELS</li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-red">donut_large</i>
-                            <span>Important</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-amber">donut_large</i>
-                            <span>Warning</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-light-blue">donut_large</i>
-                            <span>Information</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- #Menu -->
-            <!-- Footer -->
-            <div class="legal">
-                <div class="copyright">
-                    &copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
-                </div>
-                <div class="version">
-                    <b>Version: </b> 1.0.5
-                </div>
-            </div>
-            <!-- #Footer -->
-        </aside>
-        <!-- #END# Left Sidebar -->
-        <!-- Right Sidebar -->
-        <aside id="rightsidebar" class="right-sidebar">
-            <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
-                <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+      </header>
+      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+        <header class="demo-drawer-header">
+          <img src="images/user.jpg" class="demo-avatar">
+          <div class="demo-avatar-dropdown">
+            <span>hello@example.com</span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item">hello@example.com</li>
+              <li class="mdl-menu__item">info@example.com</li>
+              <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
             </ul>
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
-                    <ul class="demo-choose-skin">
-                        <li data-theme="red" class="active">
-                            <div class="red"></div>
-                            <span>Red</span>
-                        </li>
-                        <li data-theme="pink">
-                            <div class="pink"></div>
-                            <span>Pink</span>
-                        </li>
-                        <li data-theme="purple">
-                            <div class="purple"></div>
-                            <span>Purple</span>
-                        </li>
-                        <li data-theme="deep-purple">
-                            <div class="deep-purple"></div>
-                            <span>Deep Purple</span>
-                        </li>
-                        <li data-theme="indigo">
-                            <div class="indigo"></div>
-                            <span>Indigo</span>
-                        </li>
-                        <li data-theme="blue">
-                            <div class="blue"></div>
-                            <span>Blue</span>
-                        </li>
-                        <li data-theme="light-blue">
-                            <div class="light-blue"></div>
-                            <span>Light Blue</span>
-                        </li>
-                        <li data-theme="cyan">
-                            <div class="cyan"></div>
-                            <span>Cyan</span>
-                        </li>
-                        <li data-theme="teal">
-                            <div class="teal"></div>
-                            <span>Teal</span>
-                        </li>
-                        <li data-theme="green">
-                            <div class="green"></div>
-                            <span>Green</span>
-                        </li>
-                        <li data-theme="light-green">
-                            <div class="light-green"></div>
-                            <span>Light Green</span>
-                        </li>
-                        <li data-theme="lime">
-                            <div class="lime"></div>
-                            <span>Lime</span>
-                        </li>
-                        <li data-theme="yellow">
-                            <div class="yellow"></div>
-                            <span>Yellow</span>
-                        </li>
-                        <li data-theme="amber">
-                            <div class="amber"></div>
-                            <span>Amber</span>
-                        </li>
-                        <li data-theme="orange">
-                            <div class="orange"></div>
-                            <span>Orange</span>
-                        </li>
-                        <li data-theme="deep-orange">
-                            <div class="deep-orange"></div>
-                            <span>Deep Orange</span>
-                        </li>
-                        <li data-theme="brown">
-                            <div class="brown"></div>
-                            <span>Brown</span>
-                        </li>
-                        <li data-theme="grey">
-                            <div class="grey"></div>
-                            <span>Grey</span>
-                        </li>
-                        <li data-theme="blue-grey">
-                            <div class="blue-grey"></div>
-                            <span>Blue Grey</span>
-                        </li>
-                        <li data-theme="black">
-                            <div class="black"></div>
-                            <span>Black</span>
-                        </li>
-                    </ul>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="settings">
-                    <div class="demo-settings">
-                        <p>GENERAL SETTINGS</p>
-                        <ul class="setting-list">
-                            <li>
-                                <span>Report Panel Usage</span>
-                                <div class="switch">
-                                    <label><input type="checkbox" checked><span class="lever"></span></label>
-                                </div>
-                            </li>
-                            <li>
-                                <span>Email Redirect</span>
-                                <div class="switch">
-                                    <label><input type="checkbox"><span class="lever"></span></label>
-                                </div>
-                            </li>
-                        </ul>
-                        <p>SYSTEM SETTINGS</p>
-                        <ul class="setting-list">
-                            <li>
-                                <span>Notifications</span>
-                                <div class="switch">
-                                    <label><input type="checkbox" checked><span class="lever"></span></label>
-                                </div>
-                            </li>
-                            <li>
-                                <span>Auto Updates</span>
-                                <div class="switch">
-                                    <label><input type="checkbox" checked><span class="lever"></span></label>
-                                </div>
-                            </li>
-                        </ul>
-                        <p>ACCOUNT SETTINGS</p>
-                        <ul class="setting-list">
-                            <li>
-                                <span>Offline</span>
-                                <div class="switch">
-                                    <label><input type="checkbox"><span class="lever"></span></label>
-                                </div>
-                            </li>
-                            <li>
-                                <span>Location Permission</span>
-                                <div class="switch">
-                                    <label><input type="checkbox" checked><span class="lever"></span></label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+          </div>
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+          <div class="mdl-layout-spacer"></div>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid demo-content">
+          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+              <use xlink:href="#piechart" mask="url(#piemask)" />
+              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82<tspan font-size="0.2" dy="-0.07">%</tspan></text>
+            </svg>
+            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+              <use xlink:href="#piechart" mask="url(#piemask)" />
+              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82<tspan dy="-0.07" font-size="0.2">%</tspan></text>
+            </svg>
+            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+              <use xlink:href="#piechart" mask="url(#piemask)" />
+              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82<tspan dy="-0.07" font-size="0.2">%</tspan></text>
+            </svg>
+            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+              <use xlink:href="#piechart" mask="url(#piemask)" />
+              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82<tspan dy="-0.07" font-size="0.2">%</tspan></text>
+            </svg>
+          </div>
+          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+            <svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
+              <use xlink:href="#chart" />
+            </svg>
+            <svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
+              <use xlink:href="#chart" />
+            </svg>
+          </div>
+          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+                <h2 class="mdl-card__title-text">Updates</h2>
+              </div>
+              <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                Non dolore elit adipisicing ea reprehenderit consectetur culpa.
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
+              </div>
             </div>
-        </aside>
-        <!-- #END# Right Sidebar -->
-    </section>
-
-    <section class="content">
-        <div class="container-fluid">
-            <div class="block-header">
-                <h2>DASHBOARD</h2>
+            <div class="demo-separator mdl-cell--1-col"></div>
+            <div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
+              <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
+                <h3>View options</h3>
+                <ul>
+                  <li>
+                    <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Click per object</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label for="chkbox2" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox2" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Views per object</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label for="chkbox3" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox3" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Objects selected</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label for="chkbox4" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                      <input type="checkbox" id="chkbox4" class="mdl-checkbox__input">
+                      <span class="mdl-checkbox__label">Objects viewed</span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change location</a>
+                <div class="mdl-layout-spacer"></div>
+                <i class="material-icons">location_on</i>
+              </div>
             </div>
-
-            <!-- Widgets -->
-            <div class="row clearfix">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-pink hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">playlist_add_check</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">NEW TASKS</div>
-                            <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-cyan hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">help</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">NEW TICKETS</div>
-                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">forum</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">NEW COMMENTS</div>
-                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">person_add</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">NEW VISITORS</div>
-                            <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #END# Widgets -->
-            <!-- CPU Usage -->
-            <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="card">
-                        <div class="header">
-                            <div class="row clearfix">
-                                <div class="col-xs-12 col-sm-6">
-                                    <h2>CPU USAGE (%)</h2>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 align-right">
-                                    <div class="switch panel-switch-btn">
-                                        <span class="m-r-10 font-12">REAL TIME</span>
-                                        <label>OFF<input type="checkbox" id="realtime" checked><span class="lever switch-col-cyan"></span>ON</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <div id="real_time_chart" class="dashboard-flot-chart"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #END# CPU Usage -->
-            <div class="row clearfix">
-                <!-- Visitors -->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card">
-                        <div class="body bg-pink">
-                            <div class="sparkline" data-type="line" data-spot-Radius="4" data-highlight-Spot-Color="rgb(233, 30, 99)" data-highlight-Line-Color="#fff"
-                                 data-min-Spot-Color="rgb(255,255,255)" data-max-Spot-Color="rgb(255,255,255)" data-spot-Color="rgb(255,255,255)"
-                                 data-offset="90" data-width="100%" data-height="92px" data-line-Width="2" data-line-Color="rgba(255,255,255,0.7)"
-                                 data-fill-Color="rgba(0, 188, 212, 0)">
-                                12,10,9,6,5,6,10,5,7,5,12,13,7,12,11
-                            </div>
-                            <ul class="dashboard-stat-list">
-                                <li>
-                                    TODAY
-                                    <span class="pull-right"><b>1 200</b> <small>USERS</small></span>
-                                </li>
-                                <li>
-                                    YESTERDAY
-                                    <span class="pull-right"><b>3 872</b> <small>USERS</small></span>
-                                </li>
-                                <li>
-                                    LAST WEEK
-                                    <span class="pull-right"><b>26 582</b> <small>USERS</small></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Visitors -->
-                <!-- Latest Social Trends -->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card">
-                        <div class="body bg-cyan">
-                            <div class="m-b--35 font-bold">LATEST SOCIAL TRENDS</div>
-                            <ul class="dashboard-stat-list">
-                                <li>
-                                    #socialtrends
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                                <li>
-                                    #materialdesign
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                                <li>#adminbsb</li>
-                                <li>#freeadmintemplate</li>
-                                <li>#bootstraptemplate</li>
-                                <li>
-                                    #freehtmltemplate
-                                    <span class="pull-right">
-                                        <i class="material-icons">trending_up</i>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Latest Social Trends -->
-                <!-- Answered Tickets -->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card">
-                        <div class="body bg-teal">
-                            <div class="font-bold m-b--35">ANSWERED TICKETS</div>
-                            <ul class="dashboard-stat-list">
-                                <li>
-                                    TODAY
-                                    <span class="pull-right"><b>12</b> <small>TICKETS</small></span>
-                                </li>
-                                <li>
-                                    YESTERDAY
-                                    <span class="pull-right"><b>15</b> <small>TICKETS</small></span>
-                                </li>
-                                <li>
-                                    LAST WEEK
-                                    <span class="pull-right"><b>90</b> <small>TICKETS</small></span>
-                                </li>
-                                <li>
-                                    LAST MONTH
-                                    <span class="pull-right"><b>342</b> <small>TICKETS</small></span>
-                                </li>
-                                <li>
-                                    LAST YEAR
-                                    <span class="pull-right"><b>4 225</b> <small>TICKETS</small></span>
-                                </li>
-                                <li>
-                                    ALL
-                                    <span class="pull-right"><b>8 752</b> <small>TICKETS</small></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Answered Tickets -->
-            </div>
-
-            <div class="row clearfix">
-                <!-- Task Info -->
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <div class="card">
-                        <div class="header">
-                            <h2>TASK INFOS</h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <div class="table-responsive">
-                                <table class="table table-hover dashboard-task-infos">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Task</th>
-                                            <th>Status</th>
-                                            <th>Manager</th>
-                                            <th>Progress</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Task A</td>
-                                            <td><span class="label bg-green">Doing</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="width: 62%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Task B</td>
-                                            <td><span class="label bg-blue">To Do</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Task C</td>
-                                            <td><span class="label bg-light-blue">On Hold</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-light-blue" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Task D</td>
-                                            <td><span class="label bg-orange">Wait Approvel</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Task E</td>
-                                            <td>
-                                                <span class="label bg-red">Suspended</span>
-                                            </td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-red" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Task Info -->
-                <!-- Browser Usage -->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card">
-                        <div class="header">
-                            <h2>BROWSER USAGE</h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <div id="donut_chart" class="dashboard-donut-chart"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Browser Usage -->
-            </div>
+          </div>
         </div>
-    </section>
-
-    <!-- Jquery Core Js -->
-    <script src="${js}/jquery.min.js"></script>
-
-    <!-- Bootstrap Core Js -->
-    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-    <script src="${js}/bootstrap.js"></script>
-
-    <!-- Select Plugin Js -->
-    <script src="${js}/bootstrap-select.js"></script>
-
-    <!-- Slimscroll Plugin Js -->
-    <script src="${js}/jquery.slimscroll.js"></script>
-
-    <!-- Waves Effect Plugin Js -->
-    <script src="${js}/waves.js"></script>
-
-    <!-- Jquery CountTo Plugin Js -->
-    <script src="${js}/jquery.countTo.js"></script>
-
-    <!-- Morris Plugin Js -->
-    <script src="${js}/raphael.min.js"></script>
-    <script src="${js}/morris.js"></script>
-
-    <!-- ChartJs -->
-    <script src="${js}/Chart.bundle.js"></script>
-
-    <!-- Flot Charts Plugin Js -->
-    <script src="${js}/jquery.flot.js"></script>
-    <script src="${js}/jquery.flot.resize.js"></script>
-    <script src="${js}/jquery.flot.pie.js"></script>
-    <script src="${js}/jquery.flot.categories.js"></script>
-    <script src="${js}/jquery.flot.time.js"></script>
-
-    <!-- Sparkline Chart Plugin Js -->
-    <script src="${js}/jquery.sparkline.js"></script>
-
-    <!-- Custom Js -->
-    <script src="${js}/admin.js"></script>
-    <script src="${js}/index.js"></script>
-
-    <!-- Demo Js -->
-    <script src="${js}/demo.js"></script>
-</body>
-
+      </main>
+    </div>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">
+        <defs>
+          <mask id="piemask" maskContentUnits="objectBoundingBox">
+            <circle cx=0.5 cy=0.5 r=0.49 fill="white" />
+            <circle cx=0.5 cy=0.5 r=0.40 fill="black" />
+          </mask>
+          <g id="piechart">
+            <circle cx=0.5 cy=0.5 r=0.5 />
+            <path d="M 0.5 0.5 0.5 0 A 0.5 0.5 0 0 1 0.95 0.28 z" stroke="none" fill="rgba(255, 255, 255, 0.75)" />
+          </g>
+        </defs>
+      </svg>
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 250" style="position: fixed; left: -1000px; height: -1000px;">
+        <defs>
+          <g id="chart">
+            <g id="Gridlines">
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="27.3" x2="468.3" y2="27.3" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="66.7" x2="468.3" y2="66.7" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="105.3" x2="468.3" y2="105.3" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="144.7" x2="468.3" y2="144.7" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="184.3" x2="468.3" y2="184.3" />
+            </g>
+            <g id="Numbers">
+              <text transform="matrix(1 0 0 1 485 29.3333)" fill="#888888" font-family="'Roboto'" font-size="9">500</text>
+              <text transform="matrix(1 0 0 1 485 69)" fill="#888888" font-family="'Roboto'" font-size="9">400</text>
+              <text transform="matrix(1 0 0 1 485 109.3333)" fill="#888888" font-family="'Roboto'" font-size="9">300</text>
+              <text transform="matrix(1 0 0 1 485 149)" fill="#888888" font-family="'Roboto'" font-size="9">200</text>
+              <text transform="matrix(1 0 0 1 485 188.3333)" fill="#888888" font-family="'Roboto'" font-size="9">100</text>
+              <text transform="matrix(1 0 0 1 0 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">1</text>
+              <text transform="matrix(1 0 0 1 78 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">2</text>
+              <text transform="matrix(1 0 0 1 154.6667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">3</text>
+              <text transform="matrix(1 0 0 1 232.1667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">4</text>
+              <text transform="matrix(1 0 0 1 309 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">5</text>
+              <text transform="matrix(1 0 0 1 386.6667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">6</text>
+              <text transform="matrix(1 0 0 1 464.3333 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">7</text>
+            </g>
+            <g id="Layer_5">
+              <polygon opacity="0.36" stroke-miterlimit="10" points="0,223.3 48,138.5 154.7,169 211,88.5
+              294.5,80.5 380,165.2 437,75.5 469.5,223.3 	"/>
+            </g>
+            <g id="Layer_4">
+              <polygon stroke-miterlimit="10" points="469.3,222.7 1,222.7 48.7,166.7 155.7,188.3 212,132.7
+              296.7,128 380.7,184.3 436.7,125 	"/>
+            </g>
+          </g>
+        </defs>
+      </svg>
+      <a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  </body>
 </html>
+
+
+
